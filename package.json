@@ -1,0 +1,33 @@
+{
+  "name": "ara-network-node-signalhub",
+  "version": "1.0.0",
+  "description": "An ARA network node that runs an signalhub server to coordinate handshaking",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AraBlocks/ara-network-node-signalhub.git"
+  },
+  "keywords": [
+    "ara",
+    "network",
+    "node",
+    "signalhub"
+  ],
+  "author": "Prashanth Balasubramani",
+  "license": "LGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/AraBlocks/ara-network-node-signalhub/issues"
+  },
+  "homepage": "https://github.com/AraBlocks/ara-network-node-signalhub#readme",
+  "dependencies": {
+    "ara-console": "github:arablocks/ara-console",
+    "ara-network": "github:arablocks/ara-network",
+    "extend": "^3.0.1"
+  },
+  "peerDependencies": {
+    "ara-network": "github:arablocks/ara-network"
+  }
+}
