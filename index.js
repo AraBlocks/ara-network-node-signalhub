@@ -1,7 +1,7 @@
 'use strict'
 
 const { info, warn, error } = require('ara-console')
-const signalhub = require('../../signalhub')
+const signalhub = require('ara-network/signalhub')
 const extend = require('extend')
 const debug = require('debug')('ara:network:node:signalhub')
 
@@ -18,10 +18,12 @@ async function getInstance(argv) {
 
 async function configure(opts, program) {
   if (program) {
-    program.option('port', {
-      alias: 'p',
-      describe: "Port for server to listen on"
-    })
+    const { argv } = program
+      .option('port', {
+        alias: 'p',
+        describe: "Port for server to listen on"
+      })
+    if (argv.port) { opts.port = argv.port }
   }
   return extend(true, conf, opts)
 }
