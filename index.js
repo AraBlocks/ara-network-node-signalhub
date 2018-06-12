@@ -1,6 +1,4 @@
-'use strict'
-
-const { info, warn, error } = require('ara-console')
+const { info, warn } = require('ara-console')
 const signalhub = require('ara-network/signalhub')
 const extend = require('extend')
 const debug = require('debug')('ara:network:node:signalhub')
@@ -12,7 +10,7 @@ const conf = {
 
 let server = null
 
-async function getInstance(argv) {
+async function getInstance() {
   return server
 }
 
@@ -21,14 +19,14 @@ async function configure(opts, program) {
     const { argv } = program
       .option('port', {
         alias: 'p',
-        describe: "Port for server to listen on"
+        describe: 'Port for server to listen on'
       })
     if (argv.port) { opts.port = argv.port }
   }
   return extend(true, conf, opts)
 }
 
-async function start(argv) {
+async function start() {
   if (server) { return false }
 
   server = signalhub.createServer(conf)
@@ -42,21 +40,21 @@ async function start(argv) {
   return true
 
   function onerror(err) {
-    warn("signalhub: error:", err.message)
-    debug("error:", err)
+    warn('signalhub: error:', err.message)
+    debug('error:', err)
   }
 
   function onclose() {
-    warn("signalhub: Closed")
+    warn('signalhub: Closed')
   }
 
-  function onpublish(channel, data) {
+  function onpublish(channel) {
     info("signalhub: Publishing channel '%s'", channel)
   }
 
   function onlistening() {
     const { port } = server.address()
-    info("signalhub: Listening on port %s", port)
+    info('signalhub: Listening on port %s', port)
   }
 
   function onsubscribe(channel) {
@@ -64,9 +62,9 @@ async function start(argv) {
   }
 }
 
-async function stop(argv) {
-  if (null == server) { return false }
-  warn("signalhub: Stopping server")
+async function stop() {
+  if (server == null) { return false }
+  warn('signalhub: Stopping server')
   server.close(onclose)
   return true
   function onclose() {
