@@ -63,7 +63,7 @@ async function start() {
 }
 
 async function stop() {
-  if (server == null) { return false }
+  if (null == server) { return false }
   warn('signalhub: Stopping server')
   server.close(onclose)
   return true
