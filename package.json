@@ -1,6 +1,6 @@
 {
   "name": "ara-network-node-signalhub",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An Ara network node that runs a signalhub server to coordinate handshaking",
   "main": "index.js",
   "scripts": {
